@@ -1,7 +1,8 @@
+import RegistrationFormComponent from "./components/RegistrationFormComponent";
 
 function App() {
   return (
-      <h1>Hello</h1>
+      <RegistrationFormComponent/>
   );
 }
 
