@@ -1,7 +1,9 @@
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setUserNameAction} from "../redux/battle/battle.actions";
 
 const PlayerInput = ({id, label, onSubmit}) => {
-    const [userName, setUserName] = useState('');
+    const dispatch = useDispatch();
+    const userName = useSelector(state =>  state.battle[`${id}Name`]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -16,9 +18,9 @@ const PlayerInput = ({id, label, onSubmit}) => {
             placeholder="Githab user name"
             autoComplete="off"
             value={userName}
-            onChange={(event) => setUserName(event.target.value)}
+            onChange={(event) => dispatch(setUserNameAction(id, event.target.value))}
         />
-        <button className="button" disabled={!userName.length}>Submit</button>
+        <button className="button" disabled={userName && !userName.length}>Submit</button>
     </form>
 }
 
